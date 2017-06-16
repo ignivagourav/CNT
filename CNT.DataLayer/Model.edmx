@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CompareNewTyresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FitterProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FitterID" Type="int" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
+          <Property Name="BusinessName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Region_ID" Type="int" Nullable="false" />
+          <Property Name="AverageRating" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpenFrom" Type="datetime" Nullable="false" />
+          <Property Name="OpenTo" Type="datetime" Nullable="false" />
+          <Property Name="IsCretedbyAdmin" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModiFiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FitterReviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FitterProfileID" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="IsRated" Type="bit" Nullable="false" />
+          <Property Name="Request_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TyreImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tyre_Id" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tyres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilterProfile_Id" Type="int" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Brand_Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="width" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Speed" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TyreLoad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aspect" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CratedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TyresRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FitterProfileID" Type="int" Nullable="false" />
+          <Property Name="RequestedBy" Type="int" Nullable="false" />
+          <Property Name="RequestedUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsView" Type="bit" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Region_Id" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRole" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="IsPasswordChange" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FitterProfile_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="FitterProfile">
+              <PropertyRef Name="FitterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FitterReviews_FitterProfile">
+          <End Role="TyresRequests" Type="Self.TyresRequests" Multiplicity="1" />
+          <End Role="FitterReviews" Type="Self.FitterReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TyresRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FitterReviews">
+              <PropertyRef Name="Request_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FitterReviews_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FitterReviews" Type="Self.FitterReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="FitterReviews">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyreImages_Tyres">
+          <End Role="Tyres" Type="Self.Tyres" Multiplicity="1" />
+          <End Role="TyreImages" Type="Self.TyreImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tyres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TyreImages">
+              <PropertyRef Name="Tyre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tyres_Brands">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Tyres" Type="Self.Tyres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tyres">
+              <PropertyRef Name="Brand_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tyres_FitterProfile">
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="1" />
+          <End Role="Tyres" Type="Self.Tyres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FitterProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tyres">
+              <PropertyRef Name="FilterProfile_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyresRequests_FitterProfile1">
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="1" />
+          <End Role="TyresRequests" Type="Self.TyresRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FitterProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TyresRequests">
+              <PropertyRef Name="FitterProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyresRequests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TyresRequests" Type="Self.TyresRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="TyresRequests">
+              <PropertyRef Name="RequestedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddress_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserAddress" Type="Self.UserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="UserAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompareNewTyresModelStoreContainer">
+          <EntitySet Name="Blogs" EntityType="Self.Blogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FitterProfile" EntityType="Self.FitterProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FitterReviews" EntityType="Self.FitterReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TyreImages" EntityType="Self.TyreImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tyres" EntityType="Self.Tyres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TyresRequests" EntityType="Self.TyresRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddress" EntityType="Self.UserAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FitterProfile_Users" Association="Self.FK_FitterProfile_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FitterProfile" EntitySet="FitterProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FitterReviews_FitterProfile" Association="Self.FK_FitterReviews_FitterProfile">
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+            <End Role="FitterReviews" EntitySet="FitterReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FitterReviews_Users" Association="Self.FK_FitterReviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FitterReviews" EntitySet="FitterReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyreImages_Tyres" Association="Self.FK_TyreImages_Tyres">
+            <End Role="Tyres" EntitySet="Tyres" />
+            <End Role="TyreImages" EntitySet="TyreImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tyres_Brands" Association="Self.FK_Tyres_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Tyres" EntitySet="Tyres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tyres_FitterProfile" Association="Self.FK_Tyres_FitterProfile">
+            <End Role="FitterProfile" EntitySet="FitterProfile" />
+            <End Role="Tyres" EntitySet="Tyres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyresRequests_FitterProfile1" Association="Self.FK_TyresRequests_FitterProfile1">
+            <End Role="FitterProfile" EntitySet="FitterProfile" />
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyresRequests_Users" Association="Self.FK_TyresRequests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress_Users" Association="Self.FK_UserAddress_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAddress" EntitySet="UserAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompareNewTyresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tyres" Relationship="Self.FK_Tyres_Brands" FromRole="Brands" ToRole="Tyres" />
+        </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FitterProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FitterID" Type="Int32" Nullable="false" />
+          <Property Name="ProfileImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region_ID" Type="Int32" Nullable="false" />
+          <Property Name="AverageRating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpenFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OpenTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsCretedbyAdmin" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModiFiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FitterProfile_Users" FromRole="FitterProfile" ToRole="Users" />
+          <NavigationProperty Name="Tyres" Relationship="Self.FK_Tyres_FitterProfile" FromRole="FitterProfile" ToRole="Tyres" />
+          <NavigationProperty Name="TyresRequests" Relationship="Self.FK_TyresRequests_FitterProfile1" FromRole="FitterProfile" ToRole="TyresRequests" />
+        </EntityType>
+        <EntityType Name="FitterReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FitterProfileID" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="IsRated" Type="Boolean" Nullable="false" />
+          <Property Name="Request_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TyresRequest" Relationship="Self.FK_FitterReviews_FitterProfile" FromRole="FitterReviews" ToRole="TyresRequests" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FitterReviews_Users" FromRole="FitterReviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TyreImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tyre_Id" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tyre" Relationship="Self.FK_TyreImages_Tyres" FromRole="TyreImages" ToRole="Tyres" />
+        </EntityType>
+        <EntityType Name="Tyre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilterProfile_Id" Type="Int32" Nullable="false" />
+          <Property Name="ModelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand_Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="width" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Speed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TyreLoad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aspect" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CratedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_Tyres_Brands" FromRole="Tyres" ToRole="Brands" />
+          <NavigationProperty Name="FitterProfile" Relationship="Self.FK_Tyres_FitterProfile" FromRole="Tyres" ToRole="FitterProfile" />
+          <NavigationProperty Name="TyreImages" Relationship="Self.FK_TyreImages_Tyres" FromRole="Tyres" ToRole="TyreImages" />
+        </EntityType>
+        <EntityType Name="TyresRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FitterProfileID" Type="Int32" Nullable="false" />
+          <Property Name="RequestedBy" Type="Int32" Nullable="false" />
+          <Property Name="RequestedUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsView" Type="Boolean" Nullable="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FitterProfile" Relationship="Self.FK_TyresRequests_FitterProfile1" FromRole="TyresRequests" ToRole="FitterProfile" />
+          <NavigationProperty Name="FitterReviews" Relationship="Self.FK_FitterReviews_FitterProfile" FromRole="TyresRequests" ToRole="FitterReviews" />
+          <NavigationProperty Name="User" Relationship="Self.FK_TyresRequests_Users" FromRole="TyresRequests" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region_Id" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserAddress_Users" FromRole="UserAddress" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRole" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="IsPasswordChange" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FitterProfiles" Relationship="Self.FK_FitterProfile_Users" FromRole="Users" ToRole="FitterProfile" />
+          <NavigationProperty Name="FitterReviews" Relationship="Self.FK_FitterReviews_Users" FromRole="Users" ToRole="FitterReviews" />
+          <NavigationProperty Name="TyresRequests" Relationship="Self.FK_TyresRequests_Users" FromRole="Users" ToRole="TyresRequests" />
+          <NavigationProperty Name="UserAddresses" Relationship="Self.FK_UserAddress_Users" FromRole="Users" ToRole="UserAddress" />
+        </EntityType>
+        <Association Name="FK_Tyres_Brands">
+          <End Role="Brands" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Tyres" Type="Self.Tyre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tyres">
+              <PropertyRef Name="Brand_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FitterProfile_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="FitterProfile">
+              <PropertyRef Name="FitterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tyres_FitterProfile">
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="1" />
+          <End Role="Tyres" Type="Self.Tyre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FitterProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tyres">
+              <PropertyRef Name="FilterProfile_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyresRequests_FitterProfile1">
+          <End Role="FitterProfile" Type="Self.FitterProfile" Multiplicity="1" />
+          <End Role="TyresRequests" Type="Self.TyresRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FitterProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TyresRequests">
+              <PropertyRef Name="FitterProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FitterReviews_FitterProfile">
+          <End Role="TyresRequests" Type="Self.TyresRequest" Multiplicity="1" />
+          <End Role="FitterReviews" Type="Self.FitterReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TyresRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FitterReviews">
+              <PropertyRef Name="Request_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FitterReviews_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="FitterReviews" Type="Self.FitterReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="FitterReviews">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyreImages_Tyres">
+          <End Role="Tyres" Type="Self.Tyre" Multiplicity="1" />
+          <End Role="TyreImages" Type="Self.TyreImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tyres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TyreImages">
+              <PropertyRef Name="Tyre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TyresRequests_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="TyresRequests" Type="Self.TyresRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="TyresRequests">
+              <PropertyRef Name="RequestedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddress_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserAddress" Type="Self.UserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="UserAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompareNewTyresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactU" />
+          <EntitySet Name="FitterProfiles" EntityType="Self.FitterProfile" />
+          <EntitySet Name="FitterReviews" EntityType="Self.FitterReview" />
+          <EntitySet Name="TyreImages" EntityType="Self.TyreImage" />
+          <EntitySet Name="Tyres" EntityType="Self.Tyre" />
+          <EntitySet Name="TyresRequests" EntityType="Self.TyresRequest" />
+          <EntitySet Name="UserAddresses" EntityType="Self.UserAddress" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Tyres_Brands" Association="Self.FK_Tyres_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Tyres" EntitySet="Tyres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FitterProfile_Users" Association="Self.FK_FitterProfile_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FitterProfile" EntitySet="FitterProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tyres_FitterProfile" Association="Self.FK_Tyres_FitterProfile">
+            <End Role="FitterProfile" EntitySet="FitterProfiles" />
+            <End Role="Tyres" EntitySet="Tyres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyresRequests_FitterProfile1" Association="Self.FK_TyresRequests_FitterProfile1">
+            <End Role="FitterProfile" EntitySet="FitterProfiles" />
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FitterReviews_FitterProfile" Association="Self.FK_FitterReviews_FitterProfile">
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+            <End Role="FitterReviews" EntitySet="FitterReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FitterReviews_Users" Association="Self.FK_FitterReviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FitterReviews" EntitySet="FitterReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyreImages_Tyres" Association="Self.FK_TyreImages_Tyres">
+            <End Role="Tyres" EntitySet="Tyres" />
+            <End Role="TyreImages" EntitySet="TyreImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TyresRequests_Users" Association="Self.FK_TyresRequests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TyresRequests" EntitySet="TyresRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress_Users" Association="Self.FK_UserAddress_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAddress" EntitySet="UserAddresses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompareNewTyresModelStoreContainer" CdmEntityContainer="CompareNewTyresEntities">
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.Blog">
+              <MappingFragment StoreEntitySet="Blogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.Brand">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FitterProfiles">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.FitterProfile">
+              <MappingFragment StoreEntitySet="FitterProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FitterID" ColumnName="FitterID" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="OpenFrom" ColumnName="OpenFrom" />
+                <ScalarProperty Name="OpenTo" ColumnName="OpenTo" />
+                <ScalarProperty Name="IsCretedbyAdmin" ColumnName="IsCretedbyAdmin" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModiFiedDate" ColumnName="ModiFiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FitterReviews">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.FitterReview">
+              <MappingFragment StoreEntitySet="FitterReviews">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FitterProfileID" ColumnName="FitterProfileID" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="IsRated" ColumnName="IsRated" />
+                <ScalarProperty Name="Request_ID" ColumnName="Request_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TyreImages">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.TyreImage">
+              <MappingFragment StoreEntitySet="TyreImages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tyre_Id" ColumnName="Tyre_Id" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tyres">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.Tyre">
+              <MappingFragment StoreEntitySet="Tyres">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilterProfile_Id" ColumnName="FilterProfile_Id" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="Brand_Id" ColumnName="Brand_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="Rim" ColumnName="Rim" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="TyreLoad" ColumnName="TyreLoad" />
+                <ScalarProperty Name="Aspect" ColumnName="Aspect" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CratedDate" ColumnName="CratedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TyresRequests">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.TyresRequest">
+              <MappingFragment StoreEntitySet="TyresRequests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FitterProfileID" ColumnName="FitterProfileID" />
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="RequestedUserName" ColumnName="RequestedUserName" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsView" ColumnName="IsView" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddresses">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.UserAddress">
+              <MappingFragment StoreEntitySet="UserAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CompareNewTyresModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsPasswordChange" ColumnName="IsPasswordChange" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
